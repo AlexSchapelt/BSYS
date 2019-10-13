@@ -11,10 +11,10 @@ int main (void) {
 		clock_gettime(CLOCK_REALTIME, &ts1);
 		clock_gettime(CLOCK_REALTIME, &ts2);
 		//diff = ts2.tv_nsec - ts1.tv_nsec;
-		//printf("Round %d time ellapsed: %lld\n", i, diff);
+		//printf("Round %d time elapsed: %lld\n", i, diff);
 	}
 	clock_gettime(CLOCK_REALTIME, &end);
 	diff = end.tv_nsec - start.tv_nsec;
-	printf("Overall time ellapsed: %lld\n", diff);
+	printf("Overall time elapsed: %lld\n", diff);
 	exit(0);
 }

@@ -30,6 +30,6 @@ int main(int argc, char *argv[]) {
 	}*/
 	clock_gettime(CLOCK_REALTIME, &end);
 	long long diff = (long) ((end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec) - (start.tv_nsec));
-	printf("time token: %lld\ntime per System Call: %f\n", diff, (diff / (double) count+2));
+	printf("time elapsed: %lldns\ntime per System Call: %fns\n", diff, (diff / (double) count+2));
 	exit(0);
 }
