@@ -1,23 +1,20 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <sys/time.h>
+#include <time.h>
 #include <stdlib.h>
 
 int main (void) {
-	struct timeval tv1;
-	struct timeval tv2;
-	struct timeval begin;
-	struct timeval end;
-	long diff = 0;
-	gettimeofday(&begin, NULL);
+	struct timespec ts1, ts2, start, end;
+	long long diff = 0;
+	clock_gettime(CLOCK_REALTIME, &start);
 	for (int i = 0; i < 1000; ++i) {
-		gettimeofday(&tv1, NULL);
-		gettimeofday(&tv2, NULL);
-		//diff = (long) (tv2.tv_usec - tv1.tv_usec);
-		//printf("Round %d time ellapsed: %ld\n", i, diff);
+		clock_gettime(CLOCK_REALTIME, &ts1);
+		clock_gettime(CLOCK_REALTIME, &ts2);
+		//diff = ts2.tv_nsec - ts1.tv_nsec;
+		//printf("Round %d time ellapsed: %lld\n", i, diff);
 	}
-	gettimeofday(&end, NULL);
-	diff = (long) (end.tv_usec - begin.tv_usec);
-	printf("Overall time ellapsed: %ld\n", diff);
+	clock_gettime(CLOCK_REALTIME, &end);
+	diff = end.tv_nsec - start.tv_nsec;
+	printf("Overall time ellapsed: %lld\n", diff);
 	exit(0);
 }
