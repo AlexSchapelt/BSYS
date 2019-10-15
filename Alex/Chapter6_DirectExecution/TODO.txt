@@ -1,1 +1,4 @@
-Creating c program, that measures context-switch
+finisching measureconswitch.c
+(fine tuning)
+
+insure better accuracy in measurements

@@ -10,8 +10,8 @@ int main (void) {
 	for (int i = 0; i < 1000; ++i) {
 		clock_gettime(CLOCK_REALTIME, &ts1);
 		clock_gettime(CLOCK_REALTIME, &ts2);
-		//diff = ts2.tv_nsec - ts1.tv_nsec;
-		//printf("Round %d time elapsed: %lld\n", i, diff);
+		diff = ts2.tv_nsec - ts1.tv_nsec;
+		printf("Round %d time elapsed: %lld\n", i, diff);
 	}
 	clock_gettime(CLOCK_REALTIME, &end);
 	diff = end.tv_nsec - start.tv_nsec;
