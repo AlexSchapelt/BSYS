@@ -1,0 +1,105 @@
+1: Compute Response and tournaround time of following set:
+Here is the job list, with the run time of each job: 
+  Job 0 ( length = 200.0 )
+  Job 1 ( length = 200.0 )
+  Job 2 ( length = 200.0 )
+
+Turnaround Job 1: 200
+Turnaround Job 2: 400
+Turnaround Job 3: 600
+Turnaround mean : (200 + 400 + 600) / 3 = 400
+
+Response Job 1: 0
+Response Job 2: 200
+Response Job 3: 400
+Response mean : (0 + 200 + 400) / 3 = 200
+
+the result should be the same for FIFO and SJF, because all processes have length = 200
+
+** Solutions **
+
+Execution trace:
+  [ time   0 ] Run job 0 for 200.00 secs ( DONE at 200.00 )
+  [ time 200 ] Run job 1 for 200.00 secs ( DONE at 400.00 )
+  [ time 400 ] Run job 2 for 200.00 secs ( DONE at 600.00 )
+
+Final statistics:
+  Job   0 -- Response: 0.00  Turnaround 200.00  Wait 0.00
+  Job   1 -- Response: 200.00  Turnaround 400.00  Wait 200.00
+  Job   2 -- Response: 400.00  Turnaround 600.00  Wait 400.00
+
+for both policies
+
+2: Compute Response and tournaround time of following set:
+Here is the job list, with the run time of each job: 
+  Job 0 ( length = 100.0 )
+  Job 1 ( length = 200.0 )
+  Job 2 ( length = 300.0 )
+
+FIFO:
+Turnaround Job 1: 100
+Turnaround Job 2: 300
+Turnaround Job 3: 600
+Turnaround Mean : (100 + 300 + 600) / 3 = 333
+
+Response Job 1: 0
+Response Job 2: 100
+Response Job 3: 300
+Response Mean : (0 + 100 + 300) / 3 = 133
+
+SJF:
+same result, because the Jobs are arranged in ascending order
+
+** Solutions **
+
+Execution trace:
+  [ time   0 ] Run job 0 for 100.00 secs ( DONE at 100.00 )
+  [ time 100 ] Run job 1 for 200.00 secs ( DONE at 300.00 )
+  [ time 300 ] Run job 2 for 300.00 secs ( DONE at 600.00 )
+
+Final statistics:
+  Job   0 -- Response: 0.00  Turnaround 100.00  Wait 0.00
+  Job   1 -- Response: 100.00  Turnaround 300.00  Wait 100.00
+  Job   2 -- Response: 300.00  Turnaround 600.00  Wait 300.00
+
+  Average -- Response: 133.33  Turnaround 333.33  Wait 133.33
+
+for both policies
+
+3: Compute Response and tournaround time of following set:
+Here is the job list, with the run time of each job: 
+  Job 0 ( length = 100.0 )
+  Job 1 ( length = 200.0 )
+  Job 2 ( length = 300.0 )
+
+RR:
+Turnaround Job 1: 99 * 3 + 1 = 298
+Turnaround Job 2: 298 + 100 * 2 + 1 = 499
+Tunraround Job 3: 499 + 101 = 600
+Turnaround Mean : (298 + 499 + 600) / 3 = 465
+
+Response Job 1: 0
+Response Job 2: 1
+Response Job 3: 2
+Response Mean : (0 + 1 + 2) / 3 = 1
+
+4: For what types of workloads does SJF deliver the same turnaroundtimes as FIFO?
+if they are arrenged in ascending order
+
+5: For what types of workloads and quantum lengths does SJF deliverthe same response times as RR?
+if the Jobs have they same length and this length is quantum of RR
+
+6: What happens to response time with SJF as job lengths increase?
+Response time gets higher, because SJF is non-preemptive
+6.1: Can you use the simulator to demonstrate the trend?
+Yes runing with with same seed but increasing flag -m, the set has proportional lenths and there
+you can see that response time is increasing linear. 
+
+7: What happens to response time with RR as quantum lengths in-crease?
+it gets higher
+7.1: Can you write an equation that gives the worst-case re-sponse time, given N jobs?
+Yes: be q the quantum length, then the worstcase response time is
+
+sumfromi=0toN-1(q*i)) / N
+which is:
+((N - 1) * N) / 2N = (N - 1) / 2

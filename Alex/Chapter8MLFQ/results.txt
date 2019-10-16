@@ -1,0 +1,149 @@
+1:
+Job List:
+  Job  0: startTime   0 - runTime   8 - ioFreq   0
+  Job  1: startTime   0 - runTime   4 - ioFreq   0
+
+Q1:		Q2:		Q3:
+Job 0 (10/10)
+Job 0 (09/10)
+Job 0 (08/10)
+Job 0 (07/10)
+Job 0 (06/10)
+Job 0 (05/10)
+Job 0 (04/10)
+Job 0 (03/10)
+Job 1 (10/10)
+Job 1 (09/10)
+Job 1 (08/10)
+Job 1 (07/10)
+
+Job List:
+  Job  0: startTime   0 - runTime  32 - ioFreq   0
+  Job  1: startTime   0 - runTime  14 - ioFreq   0
+
+Q1:		Q2:
+Job 0 (10/10)
+Job 0 (09/10)
+Job 0 (08/10)
+Job 0 (07/10)
+Job 0 (06/10)
+Job 0 (05/10)
+Job 0 (04/10)
+Job 0 (03/10)
+Job 0 (02/10)
+Job 0 (01/10)
+Job 1 (10/10)
+Job 1 (09/10)
+Job 1 (08/10)
+Job 1 (07/10)
+Job 1 (06/10)
+Job 1 (05/10)
+Job 1 (04/10)
+Job 1 (03/10)
+Job 1 (02/10)
+Job 1 (01/10)
+		Job 0 (10/10)
+		Job 0 (09/10)
+		Job 0 (08/10)
+		Job 0 (07/10)
+		Job 0 (06/10)
+		Job 0 (05/10)
+		Job 0 (04/10)
+		Job 0 (03/10)
+		Job 0 (02/10)
+		Job 0 (01/10)
+		Job 1 (10/10)
+		Job 1 (09/10)
+		Job 1 (08/10)
+		Job 1 (07/10)D
+		Job 0 (10/10)
+		Job 0 (09/10)
+		Job 0 (08/10)
+		Job 0 (07/10)
+		Job 0 (06/10)
+		Job 0 (05/10)
+		Job 0 (04/10)
+		Job 0 (03/10)
+		Job 0 (02/10)
+		Job 0 (01/10)
+		Job 0 (10/10)
+		Job 0 (09/10)D
+
+2:
+Figure 8.2
+3 Ques -> -n 3
+1 Job -> -j 1
+no io -> -M 0
+quantum is 10ms -> -q 10
+=> ./mlfq.py -j 1 -n 3 -M 0
+
+Figure 2:
+3 Ques -> -n 3
+quantum is 10 -> -q 10
+no io -> z is 0
+
+start time job 0 is 0 -> x0 = 0
+length job 1 is > 200 -> y0 > 200
+
+start time job 1 is 100 -> x1 = 100
+lenth job 2 is 20 -> y1 = 20
+
+=> ./mlfq.py -n 3 -q10 -l 0,200,0:100,20,0
+
+Figure 8.4
+3 Ques -> -n 3
+quantum is 10 -> -q 10
+
+start time job 0 is 0 -> x0 = 0
+lenth job 0 > 200 -> y0 > 200
+no io -> z0 = 0
+
+start time job 1 is 50 -> x1 = 50
+lenth job a few to see something -> y1 = 20
+often io -> z1 = 1
+
+=> ./mlfq.py -n 2 -q 10 -l 0,200,0:50,20,1
+
+Figure 8.5
+3 Ques -> -n 3
+quantum is 10 -> -q 10
+io should last 5 -> -i 5
+
+start time job 0 is 0 -> x0 = 0
+lenth job 0 > 200 -> y0 > 200
+no io -> z0 = 0
+
+start time job 1 is 100 -> x1 = 100
+lenth job a few to see something  -> y1 = 30
+every 5 ticks io -> z1 = 5
+
+start time job 2 is 100 -> x2 = 100
+lenth job a few to see something  -> y2 = 30
+every 5 ticks io -> z2 = 5
+
+=> ./mlfq.py -q 10 -n 3 -i 5 -l 0,200,0:100,30,5:100,30,5
+
+for the right side run with -B 25
+
+Figure 8.6
+3 ques -> -n 3
+quantum is 10 -> -q 10
+io should last 1 -> -i 1
+
+start time job 0 is 0 -> x0 = 0
+lenth job 0 > 200 -> y0 > 200
+no io -> z0 = 0
+
+start time job 1 is 80 -> x1 = 80
+lenth job 0 is 100 -> y1 = 100
+every 10 ticks io -> z1 = 10
+
+=> ./mlfq.py -q 10 -n 3 -i 1 -l 0,200,0:80,100,10
+without gaming tolerance: -S
+with gaming tolerance: -a 10
+
+3:
+mlfq with only 1 que acts like a RR policy so -n 1 wuold do th trick
+
+4:
+see 2
