@@ -1,0 +1,112 @@
+1:
+Seed 1: 
+job	tickets
+0	0-83
+1	84-108
+2	109-152
+total:	153
+
+Run	winner	job	left	Done	New
+0	119	2	3
+1	9	0	0	0	total: 69 Job 1: 0-24 Job 2:25-68		
+2	19	1	6
+3	57	2	2
+4	37	2	1
+5	68	2	0	2	total: 25 Job 1 0-24
+~	~	1	~
+
+Seed 2:
+job	tickets
+0	0-93
+1	94-166
+2	167-196
+total:	197
+
+Run     winner  job     left    Done    New
+0       169     2       5
+1       42      0       8                
+2       54      0       7
+3       192     2       4
+4       28      0       6
+5       123     1       7
+6       22      0       5
+7       167     2       3
+8       53      0       4
+9       63      0       3
+10      28      0       2
+11      124     1       6
+12      70      0       1
+13      61      0       0       0       total: 103 Job 1: 0-72 Job 2: 73-102
+14	55	1	5
+...
+Random 318465 -> Winning ticket 92 (of 103) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (  job:1 timeleft:5 tix:73 )   (* job:2 timeleft:3 tix:30 )  
+Random 380015 -> Winning ticket 48 (of 103) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (* job:1 timeleft:5 tix:73 )   (  job:2 timeleft:2 tix:30 )  
+Random 891790 -> Winning ticket 16 (of 103) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (* job:1 timeleft:4 tix:73 )   (  job:2 timeleft:2 tix:30 )  
+Random 525753 -> Winning ticket 41 (of 103) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (* job:1 timeleft:3 tix:73 )   (  job:2 timeleft:2 tix:30 )  
+Random 560510 -> Winning ticket 87 (of 103) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (  job:1 timeleft:2 tix:73 )   (* job:2 timeleft:2 tix:30 )  
+Random 236123 -> Winning ticket 47 (of 103) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (* job:1 timeleft:2 tix:73 )   (  job:2 timeleft:1 tix:30 )  
+Random 23858 -> Winning ticket 65 (of 103) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (* job:1 timeleft:1 tix:73 )   (  job:2 timeleft:1 tix:30 )  
+--> JOB 1 DONE at time 22
+Random 325143 -> Winning ticket 3 (of 30) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (  job:1 timeleft:0 tix:--- )   (* job:2 timeleft:1 tix:30 )  
+--> JOB 2 DONE at time 23
+
+Seed 3:
+Here is the job list, with the run time of each job: 
+  Job 0 ( length = 2, tickets = 54 )
+  Job 1 ( length = 3, tickets = 60 )
+  Job 2 ( length = 6, tickets = 6 )
+
+
+** Solutions **
+
+Random 13168 -> Winning ticket 88 (of 120) -> Run 1
+  Jobs:  (  job:0 timeleft:2 tix:54 )   (* job:1 timeleft:3 tix:60 )   (  job:2 timeleft:6 tix:6 )  
+Random 837469 -> Winning ticket 109 (of 120) -> Run 1
+  Jobs:  (  job:0 timeleft:2 tix:54 )   (* job:1 timeleft:2 tix:60 )   (  job:2 timeleft:6 tix:6 )  
+Random 259354 -> Winning ticket 34 (of 120) -> Run 0
+  Jobs:  (* job:0 timeleft:2 tix:54 )   (  job:1 timeleft:1 tix:60 )   (  job:2 timeleft:6 tix:6 )  
+Random 234331 -> Winning ticket 91 (of 120) -> Run 1
+  Jobs:  (  job:0 timeleft:1 tix:54 )   (* job:1 timeleft:1 tix:60 )   (  job:2 timeleft:6 tix:6 )  
+--> JOB 1 DONE at time 4
+Random 995645 -> Winning ticket 5 (of 60) -> Run 0
+  Jobs:  (* job:0 timeleft:1 tix:54 )   (  job:1 timeleft:0 tix:--- )   (  job:2 timeleft:6 tix:6 )  
+--> JOB 0 DONE at time 5
+Random 470263 -> Winning ticket 1 (of 6) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (  job:1 timeleft:0 tix:--- )   (* job:2 timeleft:6 tix:6 )  
+Random 836462 -> Winning ticket 2 (of 6) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (  job:1 timeleft:0 tix:--- )   (* job:2 timeleft:5 tix:6 )  
+Random 476353 -> Winning ticket 1 (of 6) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (  job:1 timeleft:0 tix:--- )   (* job:2 timeleft:4 tix:6 )  
+Random 639068 -> Winning ticket 2 (of 6) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (  job:1 timeleft:0 tix:--- )   (* job:2 timeleft:3 tix:6 )  
+Random 150616 -> Winning ticket 4 (of 6) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (  job:1 timeleft:0 tix:--- )   (* job:2 timeleft:2 tix:6 )  
+Random 634861 -> Winning ticket 1 (of 6) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:--- )   (  job:1 timeleft:0 tix:--- )   (* job:2 timeleft:1 tix:6 )  
+--> JOB 2 DONE at time 11
+
+2:
+Seed 1: 
+job	tickets
+0	0
+1	1-100
+total:	101
+
+Run	winner	job	left	Done	New
+0	62	1	9
+1	51	1	8
+2	8	1	7
+3	54	1	6
+4-9	~	1	5-0	1	total 1 job 0: 0
+10-19	0	0	9-0	0
+
+the chance that job 0 runs, if job 1 isn't finished yet, is under 1%.
+In this case the scheduler acts more like a FIFO.

@@ -20,7 +20,8 @@ int main(int argc, char *argv[]) {
 	//for higher accuraccy, non-forloop solutions would be better
 	//tiping  read() a couple times for example
 	for (int i = 0; i < count; ++i) {
-		read(0, NULL, 0);
+		getpid();
+		//read(0, NULL, 0);
 	}
 
 	//schould be implemented for error handling, but could effect result:
@@ -29,7 +30,7 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}*/
 	clock_gettime(CLOCK_REALTIME, &end);
-	long long diff = (long) ((end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec) - (start.tv_nsec));
-	printf("time elapsed: %lldns\ntime per System Call: %fns\n", diff, (diff / (double) count+2));
+	long long diff = (long long) ((end.tv_sec - start.tv_sec) * 1000000000 + (end.tv_nsec) - (start.tv_nsec));
+	printf("time elapsed: %lldns\ntime per System Call: %lldns\n", diff, (diff / count));
 	exit(0);
 }
