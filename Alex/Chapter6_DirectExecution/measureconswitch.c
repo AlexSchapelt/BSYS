@@ -7,6 +7,12 @@
 #include <errno.h>
 #include <sys/wait.h>
 
+int cmpfunc(const void *p, const void *q)
+{
+    return (*(int*) p - *(int*) q); 
+}
+
+
 int main(void) {
 	struct timespec start, end;
 	cpu_set_t set;
@@ -48,20 +54,26 @@ int main(void) {
 			sec[i] = end.tv_sec - start.tv_sec;
 			nsec[i] = end.tv_nsec - start.tv_nsec;
 		}
-		unsigned long diff = (end.tv_sec - start.tv_sec) * 1000000000 + end.tv_nsec - start.tv_nsec;
+		unsigned long diff[count];
 		unsigned long sum = 0;
 		for(int i = 0; i < count; ++i) {
-			diff = sec[i] * 1000000000 + nsec[i];
-			sum += diff;
-			printf("Switch %d took %luns\n", (i + 1), diff/2);
+			diff[i] = sec[i] * 1000000000 + nsec[i];
 		}
-		printf("Context switch took %luns\n", sum/(count*2));
+		qsort(diff, count, sizeof(unsigned long), cmpfunc);
+		for(int i = 2; i < count-4; ++i) {
+			sum += diff[i];
+			printf("%lu\n", diff[i]);
+		}
+		printf("Context switch takes %lu ns\n", sum/(count-4));
+		exit(0);
 	} else {
 		//parrent:
 		for (int i = 0; i < count; ++i) {
 			read(fdparrent[0], &buf, 1);
 			write(fdchild[1], send, 1);
 		}
+		wait(NULL);
+		exit(0);
 	}
 	close(fdparrent[0]);
 	close(fdparrent[1]);
