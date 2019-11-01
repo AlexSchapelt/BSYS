@@ -1,8 +1,4 @@
 TODO:
-7. Write a program that creates a child process, and then in the child
-   closes standard output (STDOUT_FILENO). What happens if the child
-   callsprintf()to print some output after closing the descriptor?
-
 8. Write a program that creates two children, and connects the standard 
    output of one to the standard input of the other, using thepipe()
    system call.
