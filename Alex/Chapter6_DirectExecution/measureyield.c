@@ -28,6 +28,16 @@ int main(void) {
 		return -1;
 	}
 
+	//corrections:
+	clock_gettime(CLOCK_MONOTONIC_RAW, &start);
+	for(int i = 0; i < count; ++i) {
+		clock_gettime(CLOCK_MONOTONIC_RAW, &end);
+	}
+	unsigned long t = ((end.tv_sec - start.tv_sec) * 1000000000
+			 + end.tv_nsec - start.tv_nsec) / count;
+
+	printf("gettime took: %lu ns\n", t);
+
 	//init pipes
 	if (pipe(fdparrent) != 0) {
 		fprintf(stderr, "pipe failed\n");
@@ -40,12 +50,34 @@ int main(void) {
 
 	char buf;
 	char *send = "a";
+	unsigned long *timestamp = (unsigned long *) malloc(2 * sizeof(unsigned long));
+	if (timestamp == NULL) {
+		fprintf(stderr, "malloc failed\n");
+		return 1;
+	}
 	int rc = fork();
 	if (rc < 0) {
 		fprintf(stderr, "fork failed\n");
 		return 1;
 	} else if (rc == 0) {
 		//child:
+		close(fdparrent[0]);
+		for(int i = 0; i < count; i++) {
+//--------------sync:--------------------------------------------------
+			sched_yield();
+			write(fdparrent[1], send, 1);
+			sched_yield();
+//--------------measure------------------------------------------------
+			clock_gettime(CLOCK_MONOTONIC_RAW, &end);
+//--------------sending------------------------------------------------
+			timestamp[0] = end.tv_sec;
+			timestamp[1] = end.tv_nsec;
+			write(fdparrent[1], timestamp, (2 * sizeof(unsigned long)));
+		}
+		exit(0);
+//---------------------------------------------------------------------
+
+		/*
 		sched_yield();
 		close(fdparrent[0]);
 		close(fdchild[1]);
@@ -69,8 +101,24 @@ int main(void) {
 		}
 		printf("Context switch takes %lu ns\n", sum/(count-4));
 		exit(0);
+		*/
 	} else {
 		//parrent:
+		close(fdparrent[1]);
+		unsigned long diff = 0;
+		for(int i = 0; i < count; ++i) {
+//--------------sync------------------------------------------------------
+			read(fdparrent[0], &buf, 1);
+//--------------measure---------------------------------------------------
+			clock_gettime(CLOCK_MONOTONIC_RAW, &start);
+			read(fdparrent[0], timestamp, 2 * sizeof(unsigned long));
+//------------------------------------------------------------------------
+			diff = (timestamp[0] - start.tv_sec) * 1000000000
+			      + timestamp[1] - start.tv_nsec - t;
+			printf("conswitch took: %lu\n", diff);
+		}
+		exit(0);
+		/*
 		close(fdparrent[1]);
 		close(fdchild[0]);
 		for (int i = 0; i < count; ++i) {
@@ -79,7 +127,9 @@ int main(void) {
 		}
 		wait(NULL);
 		exit(0);
+		*/
 	}
+	free(timestamp);
 	close(fdparrent[0]);
 	close(fdparrent[1]);
 	close(fdchild[0]);
