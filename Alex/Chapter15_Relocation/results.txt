@@ -52,3 +52,9 @@ VA 1 violation
 VA 2 violation
 VA 3 valid at adress 0x00002317 (decimal: 8983)
 VA 4 valid at adress 0x000022E1 (decimal: 8929)
+
+2:
+-l 868 (maximum + 1)
+
+3:
+16284 (phys mem size - limit)
