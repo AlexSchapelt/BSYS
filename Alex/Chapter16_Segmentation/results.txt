@@ -1,0 +1,84 @@
+ARG address space size 128
+ARG phys mem size 512
+
+Segment register information:
+
+  Segment 0 base  (grows positive) : 0x00000000 (decimal 0)
+  Segment 0 limit                  : 20
+
+  Segment 1 base  (grows negative) : 0x00000200 (decimal 512)
+  Segment 1 limit                  : 20
+
+Virtual Address Trace
+  VA  0: 0x0000006c (decimal:  108) --> PA or segmentation violation?
+  VA  1: 0x00000061 (decimal:   97) --> PA or segmentation violation?
+  VA  2: 0x00000035 (decimal:   53) --> PA or segmentation violation?
+  VA  3: 0x00000021 (decimal:   33) --> PA or segmentation violation?
+  VA  4: 0x00000041 (decimal:   65) --> PA or segmentation violation?
+
+VA 0 = 0110 1100 -> Segment 1, offset 44 -> 44 - 64 + 512 = 300 VALID
+VA 1 = 0110 0001 -> Segment 1, offset 33 -> 256 - 33 = 223 VIOLATION
+VA 2 = 0011 0101 -> Segment 0, offset 52 ->                VIOLATION
+VA 3 = 0010 0001 -> Segment 0, offset 33 ->                VIOLATION
+VA 4 = 0100 0001 -> Segment 2, offset 02 -> 256 - 01 = 255 VIOLATION
+
+ARG address space size 128
+ARG phys mem size 512
+
+Segment register information:
+
+  Segment 0 base  (grows positive) : 0x00000000 (decimal 0)
+  Segment 0 limit                  : 20
+
+  Segment 1 base  (grows negative) : 0x00000200 (decimal 512)
+  Segment 1 limit                  : 20
+
+Virtual Address Trace
+  VA  0: 0x00000011 (decimal:   17) --> PA or segmentation violation?
+  VA  1: 0x0000006c (decimal:  108) --> PA or segmentation violation?
+  VA  2: 0x00000061 (decimal:   97) --> PA or segmentation violation?
+  VA  3: 0x00000020 (decimal:   32) --> PA or segmentation violation?
+  VA  4: 0x0000003f (decimal:   63) --> PA or segmentation violation?
+
+VA 0 = 0001 0001 -> Segment 0, offset 17 -> valid at 17
+VA 1 = 0110 1100 -> Segment 1, offset -20 -> valid at 492
+VA 2 = 0110 0001 -> Segemtn 1, offset -31 < -20 -> VIOLATION
+VA 3 = 0010 0000 -> Segment 0, offset > 20 -> CIOLATION
+VA 4 = 0011 1111 -> Segment 0, offset > 20 -> VIOLATION
+
+ARG address space size 128
+ARG phys mem size 512
+
+Segment register information:
+
+  Segment 0 base  (grows positive) : 0x00000000 (decimal 0)
+  Segment 0 limit                  : 20
+
+  Segment 1 base  (grows negative) : 0x00000200 (decimal 512)
+  Segment 1 limit                  : 20
+
+Virtual Address Trace
+  VA  0: 0x0000007a (decimal:  122) --> PA or segmentation violation?
+  VA  1: 0x00000079 (decimal:  121) --> PA or segmentation violation?
+  VA  2: 0x00000007 (decimal:    7) --> PA or segmentation violation?
+  VA  3: 0x0000000a (decimal:   10) --> PA or segmentation violation?
+  VA  4: 0x0000006a (decimal:  106) --> PA or segmentation violation?
+
+VA 0 = 0111 1010 -> Segment 1, offset -6 -> Valid at 506
+VA 1 = 0111 1001 -> Segment 1, offset -7 -> Valid at 505
+VA 2 = 0000 0111 -> Segment 0, offset 7 -> Valid at 7
+VA 3 = 0000 1010 -> Segment 0, offset 10 -> Valid at 10
+VA 4 = 0110 1010 -> Segment 1, offset -22 < -20 -> VIOLATION
+
+2:
+Seg 0 virtual highest = 19
+Seg 1 virtual lowest  = 108
+highest illegal Adress = 107
+lowest illegal Adress = 20
+tested with:
+./segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -s 2 -A 19,108,107,20 -c
+
+3
+Valid adresses: Seg 0: 0, 1; Seg 1: 14, 15
+-> limit 2 in both Segments
+bases must follow: (b1 - b0 > 2 | b0 < b1) && b1 > 1 && b0 < 511
