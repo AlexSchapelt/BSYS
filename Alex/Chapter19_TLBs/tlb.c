@@ -25,9 +25,18 @@ int main (int argc, char* argv[]) {
 	//array should be loaded in tlb since it has been initialized.
 	int *a = (int *) calloc(pagesize * numpages, sizeof(int));
 
-	//printing presicion of clock:
+	/*printing presicion of clock:
 	unsigned long prec = res.tv_sec * 1000000000 + res.tv_nsec;
-	printf("precision of clock is: %lu ns\n", prec);
+	printf("precision of clock is: %lu ns\n", prec);*/
+
+	//measuring loop time:
+	clock_gettime(CLOCK_MONOTONIC_RAW, &start);
+        for (int j = 0; j < trials; j++) {
+                for (int i = 0; i < numpages * jump; i += jump) {
+                }
+        }
+	clock_gettime(CLOCK_MONOTONIC_RAW, &end);
+	unsigned long loop = (end.tv_sec - start.tv_sec) * 1000000000 + end.tv_nsec - start.tv_nsec;
 
 	//start measuring:
 	clock_gettime(CLOCK_MONOTONIC_RAW, &start);
@@ -38,8 +47,8 @@ int main (int argc, char* argv[]) {
 	}
 	clock_gettime(CLOCK_MONOTONIC_RAW, &end);
 	//end measuring
-	unsigned long diff = (end.tv_sec - start.tv_sec) * 1000000000 + end.tv_nsec - start.tv_nsec;
+	unsigned long diff = (end.tv_sec - start.tv_sec) * 1000000000 + end.tv_nsec - start.tv_nsec - loop;
 	unsigned long aver = (diff / numpages) / trials;
-	printf("time per page access %lu\n", aver);
+	printf("%d,%lu\n", numpages, aver);
 	return 0;
 }
