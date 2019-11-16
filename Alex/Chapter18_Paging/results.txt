@@ -1,0 +1,28 @@
+1:
+Number of entries = Adress-Space / pagesize
+-> the bigger the adress-space, the more entries the table has
+-> the bigger the pagesize, the less entries the table has
+big pages cause internal fragmentation
+
+2:
+./paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 0
+-> 0 pages are allocated -> no valid address in pagetable
+
+./paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 25
+15 pages -> first 4 bits are pagenumber:
+VA 0x3986 = 1110 0110000110 -> page 14 -> NOT VALID
+VA 0x2bc6 = 1010 1111000110 -> page 10 -> base 0x13 -> PA = 0b0100 1111 1100 0110 = 0x4fc6
+VA 0x1e37 = 0111 1000110111 -> page 07 -> NOT VALID
+VA 0x0671 = 0001 1001110001 -> page 01 -> NOT VALID
+VA 0x1bc9 = 0110 1111011001 -> page 06 -> NOT VALID
+
+./paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 50
+VA 0x3385 = 1100 1110000101 -> page 12 -> base 0x0f -> PA = 0b0011 1111 1000 0101 = 0x3f85
+VA 0x231d = 1000 1100011101 -> page 08 -> NOT VALID
+VA 0x00e6 = 0000 0011100110 -> page 00 -> base 0x18 -> PA = 0b0110 0000 1110 0110 = 0x60e6
+VA 0x2e0f = 1011 1000001111 -> page 11 -> NOT VALID
+VA 0x1986 = 0110 0110000110 -> page 06 -> base 0x1d -> PA = 0b0111 0101 1000 0110 = 0x7586
+
+./paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 75
+./paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 100
+simular, but with more cache hits.
