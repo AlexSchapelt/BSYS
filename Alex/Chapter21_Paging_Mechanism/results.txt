@@ -1,0 +1,21 @@
+1:
+4 runable prozesses and User Cpu time is arround 25% as instances increase,
+User CPU time increases because the prozesses doesn't perform a trap by itself.
+
+2:
+~1662164KB free -> ~1.6GB free. after allocating 1024MB (1GB) ~611312 (~0.6GB) left.
+
+3:
+Total Memory on Container: 2GB
+up to ~1900 MB loop time is fast. after getting over 2GB of allocation, looptime is limited in
+read/write time of background-storage.
+
+4:
+User time gets lower, caused of the I/O's
+
+5: before hitting max size of RAM, the instructions and data fit in Memory. after reaching it,
+swaping takes place and slowes down th prozess. of course, the first loop isn't effected, cause it is
+pre loaded. if memory is empty, the first loop is slower, cause it isn't cached.
+
+6:
+at ~64GB allocation fails
