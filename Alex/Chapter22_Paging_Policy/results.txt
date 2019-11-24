@@ -1,0 +1,75 @@
+1:
+FIFO:
+Access: 8  Hit/Miss?  State of Memory? Miss TLB: 8 - -
+Access: 7  Hit/Miss?  State of Memory? Miss TLB: 7 8 -
+Access: 4  Hit/Miss?  State of Memory? Miss TLB: 4 7 8
+Access: 2  Hit/Miss?  State of Memory? Miss TLB: 2 4 7
+Access: 5  Hit/Miss?  State of Memory? Miss TLB: 5 2 4
+Access: 4  Hit/Miss?  State of Memory? Hit  TLB: 5 2 4
+Access: 7  Hit/Miss?  State of Memory? Miss TLB: 7 5 2
+Access: 3  Hit/Miss?  State of Memory? Miss TLB: 3 7 5
+Access: 4  Hit/Miss?  State of Memory? Miss TLB: 4 3 7
+Access: 5  Hit/Miss?  State of Memory? Miss TLB: 5 4 3
+
+Access: 1  Hit/Miss?  State of Memory? Miss TLB: - - 1
+Access: 8  Hit/Miss?  State of Memory? Miss TLB: - 8 1
+Access: 7  Hit/Miss?  State of Memory? Miss TLB: 7 8 1
+Access: 2  Hit/Miss?  State of Memory? Miss TLB: 2 7 8
+Access: 4  Hit/Miss?  State of Memory? Miss TLB: 4 2 7
+Access: 4  Hit/Miss?  State of Memory? Hit  TLB: 4 2 7
+Access: 6  Hit/Miss?  State of Memory? Miss TLB: 6 4 2
+Access: 7  Hit/Miss?  State of Memory? Miss TLB: 7 6 4
+Access: 0  Hit/Miss?  State of Memory? Miss TLB: 0 7 6
+Access: 0  Hit/Miss?  State of Memory? Hit  TLB: 0 7 6
+
+Access: 9  Hit/Miss?  State of Memory? Miss TLB: - - 9
+Access: 9  Hit/Miss?  State of Memory? Hit  TLB: - - 9
+Access: 0  Hit/Miss?  State of Memory? Miss TLB: - 9 0
+Access: 0  Hit/Miss?  State of Memory? Hit  TLB: - 9 0
+Access: 8  Hit/Miss?  State of Memory? Miss TLB: 8 9 0
+Access: 7  Hit/Miss?  State of Memory? Miss TLB: 9 0 7
+Access: 6  Hit/Miss?  State of Memory? Miss TLB: 0 7 6
+Access: 3  Hit/Miss?  State of Memory? Miss TLB: 7 6 3
+Access: 6  Hit/Miss?  State of Memory? Hit  TLB: 7 6 3
+Access: 6  Hit/Miss?  State of Memory? Hit  TLB: 7 6 3
+
+LRU:
+Access: 8  Hit/Miss?  State of Memory? Miss TLB: 8 - -
+Access: 7  Hit/Miss?  State of Memory? Miss TLB: 7 8 -
+Access: 4  Hit/Miss?  State of Memory? Miss TLB: 4 7 8
+Access: 2  Hit/Miss?  State of Memory? Miss TLB: 2 4 7
+Access: 5  Hit/Miss?  State of Memory? Miss TLB: 5 2 4
+Access: 4  Hit/Miss?  State of Memory? Hit  TLB: 4 5 2
+Access: 7  Hit/Miss?  State of Memory? Miss TLB: 7 4 5
+Access: 3  Hit/Miss?  State of Memory? Miss TLB: 3 7 4
+Access: 4  Hit/Miss?  State of Memory? Hit  TLB: 4 3 7
+Access: 5  Hit/Miss?  State of Memory? Miss TLB: 5 4 3
+
+OPT:
+Access: 8  Hit/Miss?  State of Memory? Miss TLB: 8 - -
+Access: 7  Hit/Miss?  State of Memory? Miss TLB: 7 8 -
+Access: 4  Hit/Miss?  State of Memory? Miss TLB: 4 7 8
+Access: 2  Hit/Miss?  State of Memory? Miss TLB: 2 4 7
+Access: 5  Hit/Miss?  State of Memory? Miss TLB: 5 4 7
+Access: 4  Hit/Miss?  State of Memory? Hit  TLB: 5 4 7
+Access: 7  Hit/Miss?  State of Memory? Hit  TLB: 5 4 7
+Access: 3  Hit/Miss?  State of Memory? Miss TLB: 3 5 4
+Access: 4  Hit/Miss?  State of Memory? Hit  TLB: 3 5 4
+Access: 5  Hit/Miss?  State of Memory? Hit  TLB: 3 5 4
+
+2:
+worst-case sequences:
+FIFO/LRU/MRU:
+again:
+0
+1
+2
+3
+4
+5
+again
+
+if cachesize would be one slot bigger, Hit rate would become optimal
+
+3:
+On random access, all policies have same efficiency (except opt and unopt)
