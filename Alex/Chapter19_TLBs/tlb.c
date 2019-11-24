@@ -1,7 +1,10 @@
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <unistd.h>
 #include <time.h>
 #include <stdlib.h>
+#include <sched.h>
+#include <errno.h>
 
 int main (int argc, char* argv[]) {
 	if (argc != 3) {
@@ -11,6 +14,15 @@ int main (int argc, char* argv[]) {
 	int numpages = atoi(argv[1]);
 	int trials = atoi(argv[2]);
 	struct timespec start, end, res;
+	cpu_set_t set;
+	int cpu = 0;
+	//setting CPU-Affinity
+        CPU_ZERO(&set);
+        CPU_SET(cpu, &set);
+        while (sched_setaffinity(getpid(), sizeof(set), &set) == 0) {
+                cpu++;
+		CPU_SET(cpu, &set);
+        }
 	//getting size of page:
 	int pagesize = getpagesize();
 	//how many ints fit in one int

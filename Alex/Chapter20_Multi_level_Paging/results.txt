@@ -1,0 +1,18 @@
+1:
+???
+
+2:
+VA: 11000 01000 11100 => 25. byte in PDE -> a1 = 1 0100001 -> PTE = 1 + 32 = 33
+on page 33 the PTE on Byte 8 is PFN -> 0xB5 = 1011 0101 plus offset of 11100 makes physical adress:
+0110 1011 1100 = 0x6BC or on Page 0110101 (53) byte 11100 (28) wich is 08
+
+VA: 01111 01101 01000 => byte 15 in PDE -> d6 = 1 1010110 -> PTE = 6 + 16 + 64 = 86
+on page 86 Byte 01101 (13) is PTE -> 7f -> invalid
+
+VA: 00101 11111 10101 => Byte 5 in PDE -> d4 = 1 1010100 -> PTE 64 + 16 + 4 = 84
+on page 84 byte 11111 (31) is PTE -> 0xCE = 1 1001110 -> PFN: 14 + 64 = 78
+-> physical Adress 1001 1101 0101 = 0x9D5 (byte 10101 (21) on page 78)
+
+3:
+adresses in Code is normaly localy. wide jumps aren't commont, so the chance, that you get a TLB-
+Hit is pretty high -> loading pages is rare -> cost of multilevel page table is acceptable
