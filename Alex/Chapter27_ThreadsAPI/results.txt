@@ -1,0 +1,35 @@
+1:
+points to the possible critical section and from where it was called.
+also: which thread is root, holded lock (if present)
+
+2:
+there are only 2 threads, which participate in the race. Deleting one of them, means that there is
+no race anymore.
+
+3:
+Thread 1 holds lock 1, while waiting for lock 2.
+Thread 2 holds lock 2, while waiting for lock 1.
+= they are waiting for each other => deadlock
+
+4:
+"lock order violated" 
+which lock was first acquired an when it is then needed.
+
+5:
+shouldn't be a problem, cause lock acquiring is surrounded by a lock => atomic => no deadlock possible
+helgrind thinks anyways, that it is a deadlock. (Not Context-Sensitive)
+
+6:
+it get's stuck in a while loop till it gets interupted. Doing so, makes the CPU working for no reason,
+(active waiting)
+
+7:
+helgrind reports data race (worker and main try to access same location)
+helgrind also reports data race on Std out. (which could be coorect)
+
+8:
+code is more efficient, cause there is no active waiting, it is pausing, while waiting.
+but previous code was correct to (or?)
+
+9:
+no errors.
