@@ -10,8 +10,8 @@ int loops = 0;
 typedef struct __counter_t {
 	int global;
 	pthread_mutex_t glock;
-	int local[4/*numTs*/];
-	pthread_mutex_t llock[4/*numTs*/];
+	int local[100/*numTs*/];
+	pthread_mutex_t llock[100/*numTs*/];
 	int threshold;
 } counter_t;
 
@@ -61,8 +61,8 @@ int main (int argc, char *argv[]) {
         if (argc != 3) {
                 return -1;
         }
-        loops = 1000000;//atoi(argv[1]);
-        numTs = 4;//atoi(argv[2]);
+        loops = 1000;//atoi(argv[1]);
+        numTs = 40;//atoi(argv[2]);
         pthread_t thread[numTs];
         struct timespec start, end;
         counter_t counter;
