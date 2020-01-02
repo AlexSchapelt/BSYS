@@ -1,0 +1,4 @@
+4:
+you can see the starvation, if you have many readers and many loops. The readers will most likely
+finish reading before a writer can write. So if one reader gains the lock, all wirter have to wait
+till all readers are done with reading.

@@ -1,0 +1,5 @@
+1:
+Yes
+2:
+not necessary. the flag read/write is not atomic, so gaining the lock is a critical section itself.
+... see 4
