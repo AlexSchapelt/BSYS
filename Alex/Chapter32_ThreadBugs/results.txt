@@ -1,0 +1,45 @@
+1:
+Order of call an return of the adds changes.
+
+2:
+no. only if the threads are waiting for the lock, the other thread is holding.
+T1 has l1 waits for l2
+T2 has l2 waits for l1
+
+3:
+if only 1 thread runs, no deadlock is possible. but for n > 1 deadlock is possible.
+
+4:
+threads will aquire locks in the same order (based on the virtual adress of the pointer to the lock).
+it avoids circular wait, cause the threads cant hold a lock an other threads wants (because it has 
+to wait for the other lock first)
+special case is important. You can't try to aquire a lock, you hold already.
+
+5:
+more threads slightly increase time, but not linear to the amount of vector addings.
+(2 threads each do 100 loops = 200 loops. with 4 threads, there are 400 loops,
+but time doesn't double)
+increasing loops causes linear increase of time spent.
+
+6:
+threads don't have to wait for each other -> faster execution.
+
+7:
+I think, you could also work with normal lock in the first aquistion.
+But could lead to more livelocks???
+
+a bit slower. Not surprisingly. It has to unlock, if aquiring l2 fails.
+more threads -> try lock fails more often -> more retries.
+
+8:
+its slow. the global lock prevent paralelism. Its actually not a concurent program any more.
+If you run 10 threads with 100 loops in theory its as fast as 1 thread with 1000 loops
+(in praxis it is even faster)
+
+9:
+Semantics are the same, because the wrapper masks it in the same way.
+
+10:
+Surprisingly bad. with more threads even worse. maybe because the call of fetch and add is slow?
+syscall? not cachable? not buffered?
+
